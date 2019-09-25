@@ -53,6 +53,11 @@ class StructuredTest {
                 +"avocado"
                 +"tomato"
             }
+//            dish("tofu scramble") {
+//                +"tofu"
+//                +"avocado"
+//                +"tomato"
+//            }
         }
         assertThat(menu.dishes.size).isEqualTo(4)
         assertThat(menu.dishes[0].name).isEqualTo("pizza")

@@ -17,10 +17,9 @@ class MenuBuilder(private val name: String) {
         return build()
     }
 
-    fun dish(name: String, block: DishBuilder.() -> Unit): DishBuilder {
+    fun dish(name: String): DishBuilder {
         val builder = DishBuilder(name)
         dishBuilders[name] = builder
-        builder.block()
         return builder
     }
 
@@ -36,10 +35,10 @@ class MenuBuilder(private val name: String) {
     }
 
     infix fun String.with(ingredient: ingredients): IngredientAdder =
-        IngredientAdder(dishBuilders[this] ?: dish(this, {}))
+        IngredientAdder(dishBuilders[this] ?: dish(this))
 
     infix fun String.with(condiment: condiments): CondimentAdder =
-        CondimentAdder(dishBuilders[this] ?: dish(this, {}))
+        CondimentAdder(dishBuilders[this] ?: dish(this))
 
     class IngredientAdder(private val dish: DishBuilder) {
         infix fun named(ingredient: String): IngredientAdder {
