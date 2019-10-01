@@ -1,7 +1,9 @@
 package builder
 
+import assertk.all
 import assertk.assertThat
 import assertk.assertions.contains
+import assertk.assertions.hasSize
 import assertk.assertions.isEqualTo
 import org.junit.jupiter.api.Test
 import builder.PizzaBuilder.Topping.mushrooms
@@ -21,8 +23,12 @@ class FunctionChainTest {
         val menu = builder.build()
 
         assertThat(menu.dishes[0].name).isEqualTo("blt")
-        assertThat(menu.dishes[0].ingredients.size).isEqualTo(3)
-        assertThat(menu.dishes[0].ingredients).contains("bacon")
+        assertThat(menu.dishes[0].ingredients).all {
+            hasSize(3)
+            contains("bacon")
+            contains("lettuce")
+            contains("tomato")
+        }
     }
 
     @Test
@@ -36,7 +42,12 @@ class FunctionChainTest {
         val menu = builder.build()
 
         assertThat(menu.dishes[0].name).isEqualTo("pizza")
-        assertThat(menu.dishes[0].ingredients.size).isEqualTo(3)
+        assertThat(menu.dishes[0].ingredients).all {
+            hasSize(3)
+            contains("cheese")
+            contains("pepperoni")
+            contains("mushroom")
+        }
     }
 
     @Test
@@ -47,7 +58,18 @@ class FunctionChainTest {
             .build()
 
         assertThat(menu.dishes[0].name).isEqualTo("blt")
-        assertThat(menu.dishes[0].ingredients.size).isEqualTo(3)
+        assertThat(menu.dishes[0].ingredients).all {
+            hasSize(3)
+            contains("bacon")
+            contains("lettuce")
+            contains("tomato")
+        }
+        assertThat(menu.dishes[1].ingredients).all {
+            hasSize(3)
+            contains("cheese")
+            contains("pepperoni")
+            contains("mushroom")
+        }
     }
 
     @Test
@@ -60,10 +82,19 @@ class FunctionChainTest {
         val menu = builder.build()
 
         assertThat(menu.dishes[0].name).isEqualTo("ham and cheese")
-        assertThat(menu.dishes[0].ingredients.size).isEqualTo(3)
-
+        assertThat(menu.dishes[0].ingredients).all {
+            hasSize(3)
+            contains("cheese")
+            contains("ham")
+            contains("mayonnaise")
+        }
         assertThat(menu.dishes[1].name).isEqualTo("pizza")
-        assertThat(menu.dishes[1].ingredients.size).isEqualTo(3)
+        assertThat(menu.dishes[1].ingredients).all {
+            hasSize(3)
+            contains("cheese")
+            contains("pepperoni")
+            contains("mushrooms")
+        }
     }
 
     @Test
@@ -81,6 +112,7 @@ class FunctionChainTest {
         val builder = MenuBuilder("Sunrise Restaurant")
 
         // currently not supported by the code
+        // but shows what the DSL would have looked like
 //        val blt = builder.add("blt")
 //        blt.add("bacon")
 //        val pizza = builder.add("pizza")

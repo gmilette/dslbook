@@ -1,6 +1,9 @@
 package builder
 
+import assertk.all
 import assertk.assertThat
+import assertk.assertions.contains
+import assertk.assertions.hasSize
 import assertk.assertions.isEqualTo
 import model.Dish
 import model.Menu
@@ -23,6 +26,17 @@ class NonDslTest {
 
         assertThat(menu.name).isEqualTo("Sunrise Restaurant")
         assertThat(menu.dishes.size).isEqualTo(2)
-        assertThat(menu.dishes[0].ingredients.size).isEqualTo(3)
+        assertThat(menu.dishes[0].ingredients).all {
+            hasSize(3)
+            contains("bacon")
+            contains("lettuce")
+            contains("tomato")
+        }
+        assertThat(menu.dishes[1].ingredients.size).isEqualTo(2)
+        assertThat(menu.dishes[1].ingredients).all {
+            hasSize(2)
+            contains("pepperoni")
+            contains("mushrooms")
+        }
     }
 }

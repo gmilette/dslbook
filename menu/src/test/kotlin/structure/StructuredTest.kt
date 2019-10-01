@@ -1,6 +1,9 @@
 package structure
 
+import assertk.all
 import assertk.assertThat
+import assertk.assertions.contains
+import assertk.assertions.hasSize
 import assertk.assertions.isEqualTo
 import org.junit.jupiter.api.Test
 import structure.DishBuilder.Size.small
@@ -62,8 +65,25 @@ class StructuredTest {
         assertThat(menu.dishes.size).isEqualTo(4)
         assertThat(menu.dishes[0].name).isEqualTo("pizza")
         assertThat(menu.dishes[1].name).isEqualTo("veggie pizza")
-        menu.dishes.forEach {
-            assertThat(it.ingredients.size).isEqualTo(3)
+        assertThat(menu.dishes[2].name).isEqualTo("blt")
+        assertThat(menu.dishes[3].name).isEqualTo("tofu scramble")
+        assertThat(menu.dishes[1].ingredients).all {
+            hasSize(3)
+            contains("mushroom")
+            contains("onion")
+            contains("peppers")
+        }
+        assertThat(menu.dishes[2].ingredients).all {
+            hasSize(3)
+            contains("bacon")
+            contains("lettuce")
+            contains("tomato")
+        }
+        assertThat(menu.dishes[3].ingredients).all {
+            hasSize(3)
+            contains("tofu")
+            contains("avocado")
+            contains("tomato")
         }
     }
 
@@ -78,8 +98,14 @@ class StructuredTest {
                 add("mushroom")
             }
         }
+
         assertThat(menu.dishes[0].name).isEqualTo("pizza")
-        assertThat(menu.dishes[0].ingredients.size).isEqualTo(3)
+        assertThat(menu.dishes[0].ingredients).all {
+            hasSize(3)
+            contains("cheese")
+            contains("pepperoni")
+            contains("mushroom")
+        }
     }
 
     @Test
@@ -98,6 +124,11 @@ class StructuredTest {
             }
         }
         assertThat(menu.dishes[0].name).isEqualTo("pizza")
-        assertThat(menu.dishes[0].ingredients.size).isEqualTo(3)
+        assertThat(menu.dishes[0].ingredients).all {
+            hasSize(3)
+            contains("cheese")
+            contains("pepperoni")
+            contains("mushroom")
+        }
     }
 }

@@ -1,6 +1,9 @@
 package infix
 
+import assertk.all
 import assertk.assertThat
+import assertk.assertions.contains
+import assertk.assertions.hasSize
 import assertk.assertions.isEqualTo
 import org.junit.jupiter.api.Test
 import infix.MenuBuilder.ingredients
@@ -21,9 +24,18 @@ class InfixTest {
             "pizza" has "pepperoni"
         }
         assertThat(menu.dishes[0].name).isEqualTo("blt")
-        assertThat(menu.dishes[0].ingredients.size).isEqualTo(3)
+        assertThat(menu.dishes[0].ingredients).all {
+            contains("bacon")
+            contains("lettuce")
+            contains("tomato")
+            hasSize(3)
+        }
         assertThat(menu.dishes[1].name).isEqualTo("pizza")
-        assertThat(menu.dishes[1].ingredients.size).isEqualTo(2)
+        assertThat(menu.dishes[1].ingredients).all {
+            hasSize(2)
+            contains("cheese")
+            contains("pepperoni")
+        }
     }
     @Test
     fun `test infix`() {
@@ -46,5 +58,10 @@ class InfixTest {
             "blt" with ingredients named "bacon" and "lettuce" and "tomato" and condiments named mayonnaise and mustard
         }
         assertThat(menu.dishes[0].name).isEqualTo("blt")
+        assertThat(menu.dishes[0].ingredients).all {
+            contains("bacon")
+            contains("mayonnaise")
+            contains("mustard")
+        }
     }
 }
