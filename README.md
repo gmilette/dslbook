@@ -2,4 +2,4 @@
 
 This repository contains the code for the book. Enjoy.
 
-See [leanpub.com/kotlindsls]
+See [leanpub.com/kotlindsls](http://leanpub.com/kotlindsls).
