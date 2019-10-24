@@ -14,7 +14,8 @@ import builder.SandwichBuilder.Condiment.mayonnaise
 class FunctionChainTest {
     @Test
     fun `create menu with function chain`() {
-        val builder = MenuBuilder("Sunrise Restaurant")
+        val builder =
+            MenuBuilder("Sunrise Restaurant")
 
         builder.add("blt", "bacon")
             .add("blt", "lettuce")

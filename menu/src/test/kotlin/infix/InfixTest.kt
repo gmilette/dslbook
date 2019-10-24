@@ -37,6 +37,29 @@ class InfixTest {
             contains("pepperoni")
         }
     }
+
+    @Test
+    fun `test infix create`() {
+        val builder = MenuBuilder("Sunrise Restaurant")
+        val menu = builder {
+            "blt" with ingredients named "bacon" and "lettuce" and "tomato"
+            "pizza" with ingredients named "cheese" and "pepperoni" and "mushroom"
+        }
+        assertThat(menu.dishes[0].name).isEqualTo("blt")
+        assertThat(menu.dishes[0].ingredients).all {
+            contains("bacon")
+            contains("lettuce")
+            contains("tomato")
+            hasSize(3)
+        }
+        assertThat(menu.dishes[1].name).isEqualTo("pizza")
+        assertThat(menu.dishes[1].ingredients).all {
+            hasSize(2)
+            contains("cheese")
+            contains("pepperoni")
+        }
+    }
+
     @Test
     fun `test infix`() {
         val builder = MenuBuilder("Sunrise Restaurant")

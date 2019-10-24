@@ -12,7 +12,7 @@ class StructuredTest {
     @Test
     fun `create two menu`() {
         val builder = MenuBuilder("Sunrise Restaurant")
-        val menu = builder.create {
+        val menu = builder {
             dish("pizza") {
                 +"cheese"
                 +"pepperoni"

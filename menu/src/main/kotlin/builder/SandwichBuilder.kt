@@ -1,6 +1,8 @@
 package builder
 
-class SandwichBuilder(val menu: MenuBuilder) {
+class SandwichBuilder(
+    val menu: MenuBuilder
+) {
     enum class Topping {
         ham,
         lettuce
@@ -11,12 +13,16 @@ class SandwichBuilder(val menu: MenuBuilder) {
         mustard
     }
 
-    fun topping(topping: Topping): SandwichBuilder {
+    fun topping(
+        topping: Topping
+    ): SandwichBuilder {
         menu.add(topping.name)
         return this
     }
 
-    fun condiment(condiment: Condiment): SandwichBuilder {
+    fun condiment(
+        condiment: Condiment
+    ): SandwichBuilder {
         menu.add(condiment.name)
         return this
     }

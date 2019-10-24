@@ -28,7 +28,8 @@ class MenuBuilder(private val name:String) {
     fun add(ingredient: String): MenuBuilder {
         currentDish?.let {
             getOrCreate(it).add(ingredient)
-        } ?: throw Exception("currentDish not set")
+        } ?:
+            throw Exception("no current Dish")
         return this
     }
 

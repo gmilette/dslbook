@@ -42,7 +42,7 @@ fun Application.module(testing: Boolean = false) {
                         a("google.com")
                         a("wikipedia.com")
                         p {
-                            a("packtpub.com")
+                            a("twitter.com")
                         }
                     }
                 }
