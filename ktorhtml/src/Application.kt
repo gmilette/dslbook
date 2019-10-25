@@ -22,37 +22,34 @@ fun Application.module(testing: Boolean = false) {
             call.respondHtml {
                 body {
                     h1 { +"HTML" }
-                    p {
-                        +"paragraph"
-                    }
-                    b {
-                        +"boldtext"
-                    }
-
-                    ul {
-                       li {
-                           +"one"
-                       }
-                       li {
-                           +"two"
-                       }
-                    }
-
-                    p {
-                        a("google.com")
-                        a("wikipedia.com")
-                        p {
-                            a("twitter.com")
-                        }
-                    }
                 }
             }
         }
     }
 }
+
+
+// exercise code
+//p {
+//    +"paragraph"
+//}
+//b {
+//    +"boldtext"
+//}
+//
 //ul {
-//    for (n in 1..10) {
-//        li { +"$n" }
+//    li {
+//        +"one"
+//    }
+//    li {
+//        +"two"
 //    }
 //}
-
+//
+//p {
+//    a("google.com")
+//    a("wikipedia.com")
+//    p {
+//        a("twitter.com")
+//    }
+//}

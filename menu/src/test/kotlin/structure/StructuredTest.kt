@@ -29,7 +29,7 @@ class StructuredTest {
     @Test
     fun `create single section menu`() {
         val builder = MenuBuilder("Sunrise Restaurant")
-        val menu = builder.create {
+        val menu = builder {
             // lambda
             dish("pizza") {
                 add("cheese")
@@ -90,7 +90,7 @@ class StructuredTest {
     @Test
     fun `create menu with pizza`() {
         val builder = MenuBuilder("Sunrise Restaurant")
-        val menu = builder.create {
+        val menu = builder {
             // lambda
             dish("pizza") {
                 add("cheese")

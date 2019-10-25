@@ -1,6 +1,5 @@
 package structure
 
-import model.Dish
 import model.Menu
 
 @DslMarker
@@ -10,8 +9,9 @@ annotation class MenuBuilderDsl
 class MenuBuilder(val name: String) {
     val dishBuilders = mutableMapOf<String, DishBuilder>()
 
-    operator fun invoke(block: MenuBuilder.() -> Unit) {
+    operator fun invoke(block: MenuBuilder.() -> Unit) : Menu {
         block()
+        return build()
     }
 
     fun dish(name: String, block: DishBuilder.() -> Unit): DishBuilder {
