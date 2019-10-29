@@ -54,9 +54,10 @@ class InfixTest {
         }
         assertThat(menu.dishes[1].name).isEqualTo("pizza")
         assertThat(menu.dishes[1].ingredients).all {
-            hasSize(2)
+            hasSize(3)
             contains("cheese")
             contains("pepperoni")
+            contains("mushroom")
         }
     }
 
