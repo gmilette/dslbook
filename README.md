@@ -1,4 +1,4 @@
-# Awesome Domain Specific Languages in Kotlin
+# Building Domain Specific Languages in Kotlin
 
 This repository contains the code for the book. Enjoy.
 
